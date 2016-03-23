@@ -1,26 +1,115 @@
 /**
- * StMovie class
- *     The class is intended to hold information about all the document being
- *     created. The movie has a library of movie clips which can be created
- *     during the scene initialization or on-the-fly.
- *     The movie also have a list of scenes and properties related to cadence.
+ * class StMovie
  * 
- * @authors   EZaca,
- * @license   MIT License
- * @copyright (c) 2016 EZaca
+ * @authors EZaca,
+ * @generator node genclass.js
+ * @license MIT License
+ * @copyright (c) 2016 Storyline
  */
 
 function StMovie()
 {
-    // Configurables
+    // Initialize fields
+    this.autoPlay = false;
     this.tickInterval = 50;
-    this.tickOverlap = true;
-
-    // Read-only
+    this.tickCheckOverlay = false;
+    this.timer = undefined;
+    this.playing = false;
     this.library = [];
     this.scenes = [];
-    this.currentScene = null;
-    this.timer = null;
-
+    this.currentScene = undefined;
+    this._tickRunning = false;
+    this.onDraw = undefined;
+    this.onPlay = undefined;
+    this.onSceneChanged = undefined;
+    this.onStop = undefined;
+    this.onTick = undefined;
+    
     return this;
 }
+
+StMovie.prototype.setTickInterval = function(value)
+{
+    item.tickInterval = value;
+};
+
+StMovie.prototype.addToLibrary = function(clipFlavorName, initCallback)
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.newScene = function(initCallback)
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.setFPS = function(fps)
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.run = function()
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.play = function()
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.stop = function()
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.tick = function()
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.gotoScene = function(sceneName, frameNum)
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.gotoAndPlay = function(sceneName, frameNum)
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.gotoAndStop = function(sceneName, frameNum)
+{
+    // TODO: Insert code here
+};
+
+StMovie.prototype.doDraw = function()
+{
+    if (this.onDraw instanceof Function)
+        this.onDraw();
+};
+
+StMovie.prototype.doPlay = function()
+{
+    if (this.onPlay instanceof Function)
+        this.onPlay();
+};
+
+StMovie.prototype.doSceneChanged = function()
+{
+    if (this.onSceneChanged instanceof Function)
+        this.onSceneChanged();
+};
+
+StMovie.prototype.doStop = function()
+{
+    if (this.onStop instanceof Function)
+        this.onStop();
+};
+
+StMovie.prototype.doTick = function()
+{
+    if (this.onTick instanceof Function)
+        this.onTick();
+};
+
