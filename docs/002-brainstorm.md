@@ -36,6 +36,8 @@ For example, the actor in the "Choose player" screen is the same when the game s
 
 ### Scene loops and auto-terminated
 
+*This item is being developed.*
+
 Allow the scene to configure a variable of loops. If the variable is 1 the scene is executed once. If it is 0 executes forever. If it is 2 or more it executes that amount of times.
 
 The default is 1, which means *no loop*.
