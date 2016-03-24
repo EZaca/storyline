@@ -149,7 +149,16 @@ Generator = {
      */
     arrayOfLines : function(content)
     {
-        var lines = String(content).split('\n');
+        // Handle line breaks
+        var lines = String(content).split('\n\r');
+        if (lines.length == 1)
+            lines = String(content).split('\r\n');
+        if (lines.length == 1)
+            lines = String(content).split('\r');
+        if (lines.length == 1)
+            lines = String(content).split('\n');
+
+        // Prepare the lines and return
         var linesFinal = [];
         for (var i=0; i<lines.length; i++)
         {

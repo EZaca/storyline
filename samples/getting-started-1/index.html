@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="../../src/Storyline.js"></script>
+<script type="text/javascript" src="../../src/StorylineError.js"></script>
+<script type="text/javascript" src="../../src/Storyline.Factory.js"></script>
+<script type="text/javascript" src="../../src/Storyline.ClipFactory.js"></script>
+<script type="text/javascript" src="../../src/Storyline.Theater.js"></script>
+<script type="text/javascript" src="../../src/Storyline.Scene.js"></script>
+<script type="text/javascript" src="../../src/Storyline.Layer.js"></script>
+<script type="text/javascript" src="../../src/Storyline.Clip.js"></script>
+
+<script type="text/javascript" src="../../src/Plugins/HTML/Storyline.HTML.js"></script>
+<script type="text/javascript" src="../../src/Plugins/HTML/Storyline.HTML.Layer.js"></script>
+<script type="text/javascript" src="../../src/Plugins/HTML/Storyline.HTML.ClipFactory.js"></script>
+<script type="text/javascript" src="../../src/Plugins/HTML/Storyline.HTML.Clip.js"></script>
+
+<script type="text/javascript">
+
+/**
+ * This is our movie
+ */
+
+    movie = new StTheater(function(){
+        console.info('Theater is initializing');
+
+        // Add the library
+        this.addToLibrary('title', 'html', Library_Title);
+        this.addToLibrary('next', 'html', Library_Next);
+        this.addToLibrary('prev', 'html', Library_Previous);
+
+        // Add the scenes
+        this.newScene(Scene1);
+        this.newScene(Scene2);
+        
+        // Run everything
+        this.run();
+
+        console.info('Theater ran');
+    });
+
+/**
+ * And this is our awesome library of actors
+ * It is added in the movie initialization
+ */
+
+    function Library_Title(){
+        console.info('Library item appended: Title');
+
+        this.tagName = 'H1';
+        this.settings.innerHTML = 'Getting Started';
+    }
+
+    function Library_Next(){
+        console.info('Library item appended: Next');
+
+        this.tagName = 'BUTTON';
+        this.settings.innerHTML = 'Next scene &raquo;';
+        this.settings.onclick = function(){
+            movie.nextScene();
+        };
+    }
+
+    function Library_Previous(){
+        console.info('Library item appended: Previous');
+
+        this.tagName = 'BUTTON';
+        this.settings.innerHTML = '&laquo; Previous scene';
+        this.settings.onclick = function(){
+            movie.prevScene();
+        };
+    }
+
+/**
+ * This is our first act
+ * It is added in the movie initialization
+ */
+
+    function Scene1()
+    {
+        console.info('Scene1 created');
+
+        this.newLayer('html', Scene1_Layer1);
+        this.newLayer('html', Scene1_Layer2);
+
+        this.onStart = function(){
+            console.info('Scene1 started');
+        }
+
+        this.onFinish = function(){
+            console.info('Scene1 finished');
+        }
+    }
+
+/**
+ * And the layers of the first act
+ * It is added in the SCENE initialization
+ */
+
+    function Scene1_Layer1()
+    {
+        console.info('Scene1.Layer1 created');
+
+        this.name = "Layer1";
+        this.newClip('title', 'MyTitle');
+    }
+
+    function Scene1_Layer2()
+    {
+        console.info('Scene1.Layer2 created');
+
+        this.name = "ButtonsLayer";
+        this.newClip('next', 'nextButton');
+    }
+
+/**
+ * This is our second act
+ * It is added in the movie initialization
+ */
+
+    function Scene2()
+    {
+        console.info('Scene2 created');
+
+        this.newLayer('html', Scene2_Layer1);
+        this.newLayer('html', Scene2_Layer2);
+
+        this.onStart = function(){
+            console.info('Scene2 started');
+        }
+
+        this.onFinish = function(){
+            console.info('Scene2 finished');
+        }
+    }
+
+/**
+ * And the layers of the second act
+ * It is added in the SCENE initialization
+ */
+
+    function Scene2_Layer1()
+    {
+        console.info('Scene2.Layer1 created');
+
+        this.name = "Layer1";
+        this.newClip('title', 'MyTitle');
+    }
+
+    function Scene2_Layer2()
+    {
+        console.info('Scene2.Layer2 created');
+
+        this.name = "ButtonsLayer";
+        this.newClip('prev', 'prevButton');
+    }
+
+/**
+ * Easy, uh?! =)
+ */
+
+</script>
+</body>
+</html>
