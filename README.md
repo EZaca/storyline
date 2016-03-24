@@ -10,7 +10,7 @@ The project itself is an analogy to a theater, where you have a movie with many 
 
 ## Who can use it?
 
-Anyone that wants a hierarchy with a main peace, one or more scenes and actors interacting can use the project.
+Anyone that wants a hierarchy with a main piece, one or more scenes and actors interacting can use the project.
 
 It is good for *animations*, where you have the Movie, scenes and actors, scenarios, effects...
 
