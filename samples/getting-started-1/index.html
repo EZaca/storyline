@@ -2,9 +2,60 @@
 <html lang="pt">
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Getting Started</title>
+    <style type="text/css">
+    body{
+        font-family: sans-serif;
+        color: #333;
+        background: #f9f9f9;
+        text-align: center;
+    }
+
+    div > h1{
+        font-size: 3em;
+    }
+
+    div > p{
+        font-size: 1em;
+        line-height: 1.8em;
+        margin-bottom: 2em;
+    }
+
+    button{
+        cursor: pointer;
+        box-sizing: border-box;
+        background: #3498db;
+        background-image: linear-gradient(to bottom, #3498db, #2980b9);
+        box-shadow: 0px 3px 6px #666666;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 1.2em;
+        padding: 10px 20px 10px 20px;
+        border: none;
+        border-bottom: solid #1f628d 5px;
+        border-radius: 20px;
+        text-decoration: none;
+        outline: none;
+    }
+
+    button:hover{
+        background: #3cb0fd;
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+    }
+
+    button:active{
+        background: #3cb0fd;
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+        border-bottom-width: 2px;
+        margin-top: 3px;
+    }
+    </style>
 </head>
 <body>
+
+<!--script type="text/javascript" src="storyline.min.js"></script-->
 
 <script type="text/javascript" src="../../src/Storyline.js"></script>
 <script type="text/javascript" src="../../src/StorylineError.js"></script>
@@ -29,10 +80,13 @@
     movie = new StTheater(function(){
         console.info('Theater is initializing');
 
+        this.setFPS(1);
+
         // Add the library
         this.addToLibrary('title', 'html', Library_Title);
         this.addToLibrary('next', 'html', Library_Next);
         this.addToLibrary('prev', 'html', Library_Previous);
+        this.addToLibrary('detail', 'html', Library_DetailText);
 
         // Add the scenes
         this.newScene(Scene1);
@@ -76,6 +130,13 @@
         };
     }
 
+    function Library_DetailText(){
+        console.info('Library item appended: DetailText');
+
+        this.tagName = 'P';
+        this.settings.innerHTML = '';
+    }
+
 /**
  * This is our first act
  * It is added in the movie initialization
@@ -108,6 +169,11 @@
 
         this.name = "Layer1";
         this.newClip('title', 'MyTitle');
+        this.newClip('detail', function(){
+            this.settings.innerHTML='This is an example page. We are currently in the <strong>first scene</strong>.\
+                                     <br>The scene is waiting for a user entry.\
+                                     <br>Click the <strong>next</strong> button to continue.';
+        });
     }
 
     function Scene1_Layer2()
@@ -150,6 +216,11 @@
 
         this.name = "Layer1";
         this.newClip('title', 'MyTitle');
+        this.newClip('detail', function(){
+            this.settings.innerHTML='Now we are in the <strong>second scene</strong>.\
+                                     <br>The tutorial use more files to show how everything works.\
+                                     <br>Click the <strong>previous</strong> button to go back';
+        });
     }
 
     function Scene2_Layer2()

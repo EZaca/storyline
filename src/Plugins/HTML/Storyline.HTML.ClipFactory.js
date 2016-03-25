@@ -36,7 +36,9 @@ Storyline.HTML.ClipFactory.prototype.doCreate = function(parentLayer, initCallba
     var instance = new Storyline.HTML.Clip(parentLayer);
     instance.tagName = this.tagName;
     instance.display = this.display;
-    instance.settings = this.settings;
+
+    for(var i in this.settings)
+        instance.settings[i] = this.settings[i];
 
     initCallback.apply(instance,[]);
 

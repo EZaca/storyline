@@ -172,6 +172,8 @@ Storyline.Theater.prototype.gotoScene = function(sceneName, frameNum)
 
     if (frameNum != undefined)
         this.currentScene.setFrame(frameNum);
+    else
+        this.currentScene.setFrame(0);
 
     if (wasPlaying)
         this._startTimer();
@@ -223,6 +225,9 @@ Storyline.Theater.prototype.doDraw = function()
 {
     if (this.onDraw instanceof Function)
         this.onDraw();
+
+    for (var i=0; i<this.scenes; i++)
+        this.scenes[i].doDraw();
 };
 
 Storyline.Theater.prototype.doPlay = function()
@@ -247,4 +252,7 @@ Storyline.Theater.prototype.doTick = function()
 {
     if (this.onTick instanceof Function)
         this.onTick();
+
+    for (var i=0; i<this.scenes.length; i++)
+        this.scenes[i].doTick();
 };

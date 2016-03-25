@@ -73,6 +73,36 @@ Storyline.Scene.prototype.gotoFrame = function(frameNum)
     this.setFrame(frameNum);
 };
 
+Storyline.Scene.prototype.nextFrame = function(){
+    var frame = this.currentFrame + 1;
+    if (frame >= this.maxFrames)
+    {
+        this.currentLoop ++;
+        if ((this.loops > 0) && (this.currentLoop >= this.loops))
+        {
+            this.theater.nextScene();
+            return 'changed';
+        }
+        else
+            this.setFrame(0);
+    }
+    else
+        this.setFrame(frame);
+}
+
+Storyline.Scene.prototype.prevFrame = function(){
+    var frame = this.currentFrame - 1;
+    if (frame < 0)
+    {
+        if (this.loops > 0)
+            this.theater.prevScene();
+        else
+            this.setFrame(0);
+    }
+    else
+        this.setFrame(frame);
+}
+
 Storyline.Scene.prototype.gotoAndPlay = function(frameNum)
 {
     this.theater._stopTimer();
@@ -123,19 +153,9 @@ Storyline.Scene.prototype.doStart = function()
 
 Storyline.Scene.prototype.doTick = function()
 {
-    var frame = this.currentFrame;
-    frame++;
-    if (frame >= this.maxFrames)
-    {
-        frame = 0;
-        this.currentLoop++;
-        if (this.currentLoop >= this.loops)
-        {
-            this.theater.nextScene();
-        } else
-            this.setFrame(0);
-    } else
-        this.setFrame(frame);
+    if (this.nextFrame() == 'changed')
+        return;
+
 
     if (this.onTick instanceof Function)
         this.onTick();

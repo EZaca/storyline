@@ -50,7 +50,7 @@ Storyline.Layer.prototype.newClip = function(libraryItem, initCallback)
         var clip = factory.create(this, function(){});
 
     this.clips.push(clip);
-    if (clip.name != '')
+    if ((clip.name != '') && (clip.name != undefined))
     {
         if (this.clips[clip.name] != undefined)
             throw new StorylineError('Clip "'+libraryItem+'" already exists');
