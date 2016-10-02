@@ -1,5 +1,7 @@
 # Storyline
 
+*Inactive / Don't waste your time here* :sweat:
+
 ## Introduction
 
 The Storyline project allows the user to create a flow of scenes and animations.
